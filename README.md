@@ -78,24 +78,6 @@ provando que o BPE aprende estruturas linguísticas reais a partir de frequênci
 
 ---
 
-## Relatório: O que significa `##` no WordPiece?
-
-Ao tokenizar a frase de teste com o BERT multilingual:
-
-> *"Os hiper-parâmetros do transformer são inconstitucionalmente difíceis de ajustar."*
-
-palavras longas como **"inconstitucionalmente"** são divididas em sub-palavras:
-
-```
-in  +  ##consti  +  ##tucion  +  ##almente
-```
-
-O símbolo **`##`** (cerquilha dupla) é o marcador de **continuação de palavra**
-do algoritmo WordPiece. Ele indica que aquele token **não inicia uma palavra nova**
-— ele é a sequência de uma palavra que já começou. Sem o `##`, o tokenizador
-não saberia se `almente` é o começo de uma nova palavra ou o final de
-"inconstitucionalmente".
-
 transform  +  ##er  +  ##iza  +  ##ção
 
 O modelo recebe informação útil sobre cada pedaço, em vez de um `[UNK]` vazio.
