@@ -96,20 +96,7 @@ do algoritmo WordPiece. Ele indica que aquele token **não inicia uma palavra no
 não saberia se `almente` é o começo de uma nova palavra ou o final de
 "inconstitucionalmente".
 
-### Por que sub-palavras impedem o travamento do modelo?
-
-Um vocabulário de palavras completas (ex: 500.000 entradas) inevitavelmente
-encontrará palavras desconhecidas (*out-of-vocabulary*, OOV) em textos novos.
-Quando isso acontece, o modelo recebe um token genérico `[UNK]` e perde
-completamente a informação semântica daquela palavra.
-
-Com sub-palavras (BPE ou WordPiece), qualquer palavra jamais vista pode ser
-decomposta em partes menores que **já existem no vocabulário**. A palavra
-inventada *"transformerização"*, por exemplo, seria segmentada como:
-
-```
 transform  +  ##er  +  ##iza  +  ##ção
-```
 
 O modelo recebe informação útil sobre cada pedaço, em vez de um `[UNK]` vazio.
 Isso permite vocabulários menores (32.000–37.000 tokens, como no paper original)
@@ -137,13 +124,3 @@ de pares isolados no vocabulário — este trecho foi construído com auxílio d
 para garantir a correção do padrão regex, conforme permitido pelo contrato pedagógico.
 A lógica do algoritmo BPE, a função `get_stats` e o loop de treinamento foram
 compreendidos e documentados pelo aluno.
-
----
-
-## Referências
-
-- Sennrich et al. (2016). *Neural Machine Translation of Rare Words with Subword Units*.
-  [https://arxiv.org/abs/1508.07909](https://arxiv.org/abs/1508.07909)
-- Devlin et al. (2019). *BERT: Pre-training of Deep Bidirectional Transformers*.
-  [https://arxiv.org/abs/1810.04805](https://arxiv.org/abs/1810.04805)
-- Tokenizador: [bert-base-multilingual-cased](https://huggingface.co/bert-base-multilingual-cased)
